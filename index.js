@@ -33,6 +33,10 @@ app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/app/index.html`);
 });
 
+app.get('/control-panel', (req, res) => {
+  res.sendFile(`${__dirname}/app/control-panel.html`);
+})
+
 app.get('/qlab/intro/start', (req, res) => {
   res.sendStatus(200);
   // Change the program input to Town Hall countdown.
@@ -128,6 +132,11 @@ atem.on('connect', () => {
 
   io.on('connection', socket => {
     socket.emit('setup', channels);
+
+    socket.on('message', (message, fn) => {
+      io.emit('messageReceived', message);
+      fn('OK');
+    });
   });
 
   console.log('We are good to go!');

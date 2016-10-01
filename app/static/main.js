@@ -6,6 +6,7 @@
   const settingsChannelsEl = document.getElementById('settings-channels');
   const settingsToggleEl = document.getElementById('settings-toggle');
   const channelLabelEl = document.getElementById('channel-label');
+  const messageEl = document.getElementById('message');
 
   function createChannelButton(channel) {
     const button = document.createElement('button');
@@ -16,6 +17,15 @@
     button.setAttribute('label', channel.label);
 
     return button;
+  }
+
+  function popMessage(message, duration = 5000) {
+    messageEl.textContent = message;
+    messageEl.classList.add('is-active');
+
+    setTimeout(() => {
+      messageEl.classList.remove('is-active');
+    }, duration);
   }
 
   function switchChannel(channel) {
@@ -29,6 +39,11 @@
   const socket = io('/');
   socket.on('stateChange', channels => {
     switchChannel(channels[selectedChannel]);
+  });
+
+  socket.on('messageReceived', data => {
+    console.log(data);
+    popMessage(data, 5000);
   });
 
   socket.on('setup', channels => {
