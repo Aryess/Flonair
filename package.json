@@ -1,0 +1,23 @@
+{
+  "name": "flonair",
+  "version": "1.0.0",
+  "description": "A webapp to indicate whether cameras are on air from ATEM switcher.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steven Sinatra <ssinatra@freelancer.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.6.1",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-plugin-import": "^2.0.0"
+  },
+  "dependencies": {
+    "applest-atem": "^0.2.0",
+    "normalize.css": "^4.2.0",
+    "socket.io": "^1.4.8",
+    "yargs": "^5.0.0"
+  }
+}

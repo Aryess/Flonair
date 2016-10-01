@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.ColorBackground {
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.2s cubic-bezier(0.4, 0, .2, 1);
+}
+
+.ColorBackground[data-state="preview"] {
+  background: #4fb55d;
+}
+
+.ColorBackground[data-state="live"] {
+  background: #eb3730;
+}
