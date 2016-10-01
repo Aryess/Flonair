@@ -70,4 +70,8 @@ atem.on('connect', () => {
     io.emit('stateChange', channels);
     console.log(channels);
   });
+
+  io.on('connection', socket => {
+    socket.emit('stateChange', channels);
+  });
 });
