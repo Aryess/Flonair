@@ -8,10 +8,18 @@
 </head>
 <body>
   <div id="background" class="ColorBackground ColorBackground--live"></div>
+  <div id="channel-label" class="ChannelLabel">No Camera</div>
 
   <div id="settings" class="Settings">
-    <div id="settings-channels" class="Settings-channels"></div>
+    <div>
+      <h1 class="Settings-title">Choose the camera you're controlling:</h1>
+      <div id="settings-channels" class="Settings-channels"></div>
+    </div>
   </div>
+
+  <button id="settings-toggle" type="button" class="SettingsToggle">
+    <img src="./assets/settings.svg" alt="Settings">
+  </button>
 
 
   <script src="./node_modules/socket.io-client/socket.io.js"></script>

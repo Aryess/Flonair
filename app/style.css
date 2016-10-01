@@ -24,14 +24,36 @@
   background: #eb3730;
 }
 
+.ChannelLabel {
+  position: fixed;
+  bottom: 32px;
+  right: 0;
+  left: 0;
+  max-width: 240px;
+  margin: auto;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  text-align: center;
+  background: rgba(200, 200, 200, 0.8);
+}
+
 
 .Settings {
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 100;
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.85);
+}
+
+.Settings-title {
+  text-align: center;
 }
 
 .Settings-channels {
@@ -52,4 +74,14 @@
 
 .Settings-channels-button:hover {
   background: #0087e0;
+}
+
+.SettingsToggle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 16px;
+  border: 0;
+  background: none;
+  cursor: pointer;
 }

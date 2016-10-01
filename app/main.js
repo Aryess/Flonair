@@ -4,6 +4,8 @@
   const backgroundEl = document.getElementById('background');
   const settingsEl = document.getElementById('settings');
   const settingsChannelsEl = document.getElementById('settings-channels');
+  const settingsToggleEl = document.getElementById('settings-toggle');
+  const channelLabelEl = document.getElementById('channel-label');
 
   function createChannelButton(channel) {
     const button = document.createElement('button');
@@ -16,11 +18,17 @@
     return button;
   }
 
+  function switchChannel(channel) {
+    backgroundEl.setAttribute(
+      'data-state', channel.state.toLowerCase()
+    );
+
+    channelLabelEl.textContent = channel.label;
+  }
+
   const socket = io('/');
   socket.on('stateChange', channels => {
-    backgroundEl.setAttribute(
-      'data-state', channels[selectedChannel].state.toLowerCase()
-    );
+    switchChannel(channels[selectedChannel]);
   });
 
   socket.on('setup', channels => {
@@ -38,10 +46,12 @@
       channelButton.addEventListener('click', (e) => {
         selectedChannel = e.target.getAttribute('data-id');
         settingsEl.classList.add('is-hidden');
-        backgroundEl.setAttribute(
-          'data-state', channels[selectedChannel].state.toLowerCase()
-        );
+        switchChannel(channels[selectedChannel]);
       });
+    });
+
+    settingsToggleEl.addEventListener('click', e => {
+      settingsEl.classList.toggle('is-hidden');
     });
   });
 })();

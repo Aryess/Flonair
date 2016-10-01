@@ -54,9 +54,6 @@ atem.on('connect', () => {
     return channelList;
   }, {});
 
-  console.log(channels);
-
-
 
   atem.on('stateChanged', (err, state) => {
     const tallys = state.tallys.slice(0, -2);
@@ -68,7 +65,6 @@ atem.on('connect', () => {
     });
 
     io.emit('stateChange', channels);
-    console.log(channels);
   });
 
   io.on('connection', socket => {
