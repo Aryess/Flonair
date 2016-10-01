@@ -33,7 +33,46 @@ app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/app/index.html`);
 });
 
-app.get('/qlab/start', (req, res) => {
+app.get('/qlab/intro/start', (req, res) => {
+  res.sendStatus(200);
+  // Change the program input to Town Hall countdown.
+  atem.changeProgramInput(13);
+  atem.changeProgramInput(13, 1);
+
+  // Overlay the GoPro 1 view behind the countdown for a sleek view.
+  atem.changePreviewInput(4);
+  atem.changePreviewInput(4, 1);
+
+  // Set the transition to overlay.
+  // TODO: Fade this in?
+  atem.changeTransitionPosition(2000);
+  atem.changeTransitionPosition(2000, 1);
+});
+
+app.get('/qlab/intro/record', (req, res) => {
+  res.sendStatus(200);
+
+  // TODO: Fade this in?
+  atem.changeTransitionPosition(0);
+  atem.changeTransitionPosition(0, 1);
+
+  // Prepare for the MC and Manila
+  atem.changePreviewInput(1);
+  atem.changePreviewInput(7, 1);
+});
+
+app.get('/transition/:val', (req, res) => {
+  res.sendStatus(200);
+  atem.changeTransitionPosition(req.params.val);
+});
+
+app.get('/qlab/intro/stop', (req, res) => {
+  res.sendStatus(200);
+  atem.autoTransition();
+  atem.autoTransition(1);
+});
+
+app.get('/qlab/stinger/start', (req, res) => {
   res.sendStatus(200);
   atem.changePreviewInput(13);
   atem.autoTransition();
@@ -41,12 +80,16 @@ app.get('/qlab/start', (req, res) => {
   atem.autoTransition(1);
 });
 
-app.get('/qlab/stop', (req, res) => {
+app.get('/qlab/stinger/stop', (req, res) => {
   res.sendStatus(200);
   atem.autoTransition();
   atem.autoTransition(1);
 });
 
+
+app.get('/state', (req, res) => {
+  res.json(channels);
+})
 
 atem.connect(argv.switcherIp);
 

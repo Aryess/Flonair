@@ -46,7 +46,9 @@
       channelButton.addEventListener('click', (e) => {
         selectedChannel = e.target.getAttribute('data-id');
         settingsEl.classList.add('is-hidden');
-        switchChannel(channels[selectedChannel]);
+        fetch('/state')
+          .then(response => response.json())
+          .then(channels => switchChannel(channels[selectedChannel]));
       });
     });
 
