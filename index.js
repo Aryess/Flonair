@@ -36,9 +36,15 @@ app.get('/', (req, res) => {
 app.get('/qlab/start', (req, res) => {
   res.sendStatus(200);
   atem.changePreviewInput(13);
-  atem.cutTransition();
+  atem.autoTransition();
   atem.changePreviewInput(13, 1);
-  atem.cutTransition(1);
+  atem.autoTransition(1);
+});
+
+app.get('/qlab/stop', (req, res) => {
+  res.sendStatus(200);
+  atem.autoTransition();
+  atem.autoTransition(1);
 });
 
 
