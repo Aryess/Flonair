@@ -6,20 +6,6 @@ const ATEM = require('applest-atem');
 const yargs = require('yargs');
 const socketIo = require('socket.io');
 
-
-const app = express();
-const server = http.Server(app);
-const io = socketIo(server);
-server.listen(2588);
-
-app.all('*', (req, res, next) => {
-  res.sendFile(`${__dirname}/app/${req.params[0]}`);
-})
-
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/app/index.html`);
-});
-
 const argv = yargs.argv;
 const atem = new ATEM();
 
@@ -30,7 +16,31 @@ const STATES = {
   3: "LIVE"
 };
 
+
 let channels = {};
+
+
+const app = express();
+const server = http.Server(app);
+const io = socketIo(server);
+server.listen(2588);
+
+app.all('/static/*', (req, res, next) => {
+  res.sendFile(`${__dirname}/app/static/${req.params[0]}`);
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/app/index.html`);
+});
+
+app.get('/qlab/start', (req, res) => {
+  res.sendStatus(200);
+  atem.changePreviewInput(13);
+  atem.cutTransition();
+  atem.changePreviewInput(13, 1);
+  atem.cutTransition(1);
+});
+
 
 atem.connect(argv.switcherIp);
 
@@ -70,4 +80,6 @@ atem.on('connect', () => {
   io.on('connection', socket => {
     socket.emit('setup', channels);
   });
+
+  console.log('We are good to go!');
 });
