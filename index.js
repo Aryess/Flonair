@@ -1,8 +1,24 @@
 'use strict';
 
+const http = require('http');
+const express = require('express');
 const ATEM = require('applest-atem');
 const yargs = require('yargs');
-const io = require('socket.io')(2588);
+const socketIo = require('socket.io');
+
+
+const app = express();
+const server = http.Server(app);
+const io = socketIo(server);
+server.listen(2588);
+
+app.all('*', (req, res, next) => {
+  res.sendFile(`${__dirname}/app/${req.params[0]}`);
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/app/index.html`);
+});
 
 const argv = yargs.argv;
 const atem = new ATEM();
