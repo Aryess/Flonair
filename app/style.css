@@ -4,7 +4,13 @@
   box-sizing: border-box;
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 .ColorBackground {
+  position: fixed;
+  z-index: -1;
   width: 100vw;
   height: 100vh;
   transition: all 0.2s cubic-bezier(0.4, 0, .2, 1);
@@ -16,4 +22,34 @@
 
 .ColorBackground[data-state="live"] {
   background: #eb3730;
+}
+
+
+.Settings {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.Settings-channels {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.Settings-channels-button {
+  flex: 1 1 200px;
+  margin: 4px 12px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  background: #139ff0;
+  cursor: pointer;
+}
+
+.Settings-channels-button:hover {
+  background: #0087e0;
 }

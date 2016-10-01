@@ -72,6 +72,6 @@ atem.on('connect', () => {
   });
 
   io.on('connection', socket => {
-    socket.emit('stateChange', channels);
+    socket.emit('setup', channels);
   });
 });
