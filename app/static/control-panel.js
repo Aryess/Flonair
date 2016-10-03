@@ -1,3 +1,5 @@
+'use strict';
+
 (() => {
   const messageForm = document.getElementById('message-form');
 

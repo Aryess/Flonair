@@ -1,3 +1,5 @@
+'use strict';
+
 (() => {
   let selectedChannel;
 
@@ -71,4 +73,12 @@
       settingsEl.classList.toggle('is-hidden');
     });
   });
+
+  socket.on('disconnect', () => {
+    console.log('DISCONNECT');
+  });
+
+  socket.on('connect', () => {
+    console.log('CONNECT');
+  })
 })();
