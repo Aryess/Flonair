@@ -103,6 +103,21 @@
   background: #0087e0;
 }
 
+.Settings-messages-button {
+  flex: 1 1 200px;
+  margin: 4px 12px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  background: #900C3F;
+  cursor: pointer;
+}
+
+.Settings-messages-button:hover {
+  background: #581845;
+}
+
 .SettingsToggle {
   position: fixed;
   bottom: 0;

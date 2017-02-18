@@ -19,7 +19,6 @@ const STATES = {
 
 let channels = {};
 
-
 const app = express();
 const server = http.Server(app);
 const io = socketIo(server);
@@ -132,6 +131,7 @@ atem.on('connect', () => {
 
   io.on('connection', socket => {
     socket.emit('setup', channels);
+    socket.emit('test', Object.keys(io.sockets.connected));
 
     socket.on('message', (message, fn) => {
       io.emit('messageReceived', message);
